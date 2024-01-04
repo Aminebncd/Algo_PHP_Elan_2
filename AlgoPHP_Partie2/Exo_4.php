@@ -50,16 +50,10 @@ function  afficherTableHTML($capitales) {
         $lienWiki = "https://fr.wikipedia.org/wiki/" . urlencode($capitale);
 
     
-        echo "<tr><td>" . strtoupper($pays) . "</td><td>" . $capitale . "</td><td>" ."<a href='$lienWiki' target='_blank'>Lien". "</td></tr>";
+        echo "<tr><td>" . strtoupper($pays) . "</td><td>" . $capitale . "</td><td>" ."<a href='$lienWiki' target='_blank'>Lien</a>". "</td></tr>";
     }
 
     echo "</table>";
 }
 
-
 afficherTableHTML($capitales);
-
-foreach ($capitales as $pays => $capitale) {
-    $lienWiki = "https://fr.wikipedia.org/wiki/" . urlencode($capitale);
-    echo "<tr><td>" . strtoupper($pays) . "</td><td>" . $capitale . "</td><td>" . "<a href='$lienWiki' target='_blank'>Lien</a>" . "</td></tr>";
-}

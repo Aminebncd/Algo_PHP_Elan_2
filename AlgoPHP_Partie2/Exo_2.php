@@ -14,18 +14,18 @@ Vous devrez appeler la fonction comme suit : afficherTableHTML($capitales);
 
 
 <style>
+
     table {
-        
          align : left;
          border-collapse: collapse;
-       
     } 
     
-    td,
-    th {
+    th,
+    td {
         border: 1px solid #333;
         padding : 3px;
     }
+
 </style>
 
 <h2>RESULTAT :</h2> <br>
@@ -33,26 +33,34 @@ Vous devrez appeler la fonction comme suit : afficherTableHTML($capitales);
 <?php
 
 
-$capitales = array(
+$capitalesPays = array(
     "France" => "Paris",
     "Allemagne" => "Berlin",
     "USA" => "Washington",
     "Italie" => "Rome",
 );
 
-function  afficherTableHTML($capitales) {
+$intitules = array('Pays', 'Capitale');
 
-    asort($capitales);
+
+function  afficherTableHTML($tableau, $titres) {
+
+    asort($tableau);
     
     echo "<table>";
-    echo "<tr><th>Pays</th><th>Capitale</th></tr>";
 
-    foreach ($capitales as $pays => $capitale) {
-        echo "<tr><td>" . strtoupper($pays) . "</td><td>" . $capitale . "</td></tr>";
+    echo "<tr>";
+    foreach ($titres as $titre) {
+        echo "<th>$titre</th>";
+    }
+    echo "</tr>";
+
+    foreach ($tableau as $cle => $valeur) {
+        echo "<tr><td>" . strtoupper($cle) . "</td><td>" . $valeur . "</td></tr>";
     }
 
     echo "</table>";
 }
 
 
-afficherTableHTML($capitales);
+afficherTableHTML($capitalesPays, $intitules);
