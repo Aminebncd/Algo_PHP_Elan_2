@@ -14,12 +14,12 @@ afficherInput($nomsInput);</p><br><br>
     $nomsInput = array("Nom", "Prénom", "Ville");
     
 
-    function afficherInput($nomsInput) {
+    function afficherInput($tableau) {
         echo '<form method="post" action="#">';
 
-        foreach ($nomsInput as $nom) {
-            echo '<label for="' . strtolower($nom) . '">' . $nom . ' <br></label>';
-            echo '<input type="text" id="' . strtolower($nom) . '" name="' . strtolower($nom) . '" required><br>';
+        foreach ($tableau as $valeur) {
+            echo '<label for="' . strtolower($valeur) . '">' . $valeur . ' <br></label>';
+            echo '<input type="text" id="' . strtolower($valeur) . '" name="' . strtolower($valeur) . '" required><br>';
         }
 
         echo '</form>';

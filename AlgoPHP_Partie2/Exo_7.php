@@ -16,13 +16,13 @@ genererCheckbox($elements);<br>
 
 $elements = array( 'choix 1', 'choix 2', 'choix 3');
 
-function genererCheckbox($elements) {
+function genererCheckbox($tableau) {
 
     echo '<form method="post" action="#">';
 
-    foreach ($elements as $element) {
+    foreach ($tableau as $valeur) {
         echo '<label>';
-        echo '<input type="checkbox" name="' . $element . '"> ' . $element;
+        echo '<input type="checkbox" name="' . $valeur . '"> ' . $valeur;
         echo '</label><br>';
     }
 

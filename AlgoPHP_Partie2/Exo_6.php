@@ -15,11 +15,11 @@ alimenterListeDeroulante($elements);<br><br>
 
 $elements = array("Monsieur","Madame","Mademoiselle");
 
-function afficherListeDeroulante($elements) {
+function afficherListeDeroulante($tableau) {
     echo '<select name="choix">';
 
-    foreach ($elements as $element) {
-        echo '<option value="' . strtolower($element) . '">' . $element . '</option>';
+    foreach ($tableau as $valeur) {
+        echo '<option value="' . strtolower($valeur) . '">' . $valeur . '</option>';
     }
 
     echo '</select>';
