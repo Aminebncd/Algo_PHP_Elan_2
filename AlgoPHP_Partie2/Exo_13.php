@@ -24,12 +24,14 @@ class Voiture {
     private string $modele;
     private int $nbPortes;
     private int $vitesseActuelle;
+    private bool $etat;
 
-    public function __construct($marque, $modele, $nbPortes, $vitesseActuelle){
+    public function __construct(string $marque, string $modele, int $nbPortes){
         $this->marque = $marque;
         $this->modele = $modele;
         $this->nbPortes = $nbPortes;
-        $this->vitesseActuelle = $vitesseActuelle;
+        $this->vitesseActuelle = 0;
+        $this->etat = false;
     }
 
     public function getMarque()
@@ -75,20 +77,112 @@ class Voiture {
         $this->vitesseActuelle = $vitesseActuelle;
         return $this;
     }
-
+    
+    public function getEtat()
+    {
+        return $this->etat;
+        
+    }
+    
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    
+        return $this;
+    }
+    
     public function afficherInformations() {
+
+        echo "infos vehicule" . "<br>";
+        echo "******************<br>";
         echo "Marque: " . $this->getMarque() . "<br>";
         echo "Modèle: " . $this->getModele() . "<br>";
         echo "Nombre de portes: " . $this->getNbPortes() . "<br>";
-        echo "Vitesse actuelle: " . $this->getVitesseActuelle() . "<br>";
+        echo "Etat actuel :" . $this->getEtat() . "<br>";
+        echo "Vitesse actuelle: " . $this->getVitesseActuelle() . "km/h<br><br>";
     }
+
+    public function demarrer(){
+       if ($this->etat){
+        echo "La $this est deja allumée !<br>" ;
+       } else {
+           $this->etat = true;
+            echo "la $this est demarrée<br>";
+       }
+    }
+
+
+    public function stopper(){
+        if ($this->etat){
+            $this->etat = false;
+            $this->vitesseActuelle = 0;
+            echo "la  $this est arretée<br>";  
+        } else {
+            echo "la $this est deja eteinte !<br>";
+        }
+    }
+
+
+    public function accelerer(int $vitesse){
+        if($this->etat){
+            $this-> vitesseActuelle += $vitesse;
+            echo "la vitesse du $this est de :" . $this->vitesseActuelle . "km/h<br>";
+        } else {
+            echo "La  $this doit d'abord etre allumée !<br>";
+        }
+    }
+
+
+    public function ralentir(int $vitesse){
+        if ($this->etat && $this->vitesseActuelle - $vitesse > 0){
+            $this-> vitesseActuelle -= $vitesse;
+            echo "la vitesse du $this est de :" . $this->vitesseActuelle . "km/h<br>";
+
+        }elseif($this->etat && $this->vitesseActuelle - $vitesse <= 0) {
+            $this->etat = false;
+            echo "La $this s'est arretée<br>";
+            echo "la vitesse du $this est de : 0km/h <br>";
+
+        }else {
+            echo "La $this doit d'abord etre allumée !<br>";
+        }
+     
+    }
+
+    public function __toString()
+    {
+        return "$this->marque $this->modele";
+    }
+
+   
 }
 
 // Instanciation des voitures
-$v1 = new Voiture("Peugeot", "408", 5, 0);
-$v2 = new Voiture("citroen", "C4", 3, 0);
+$vehicule1 = new Voiture("Peugeot", "408", 5);
+$vehicule2 = new Voiture("Citroen", "C4", 3);
+$vehicule3 = new Voiture("Mercedes", "Classe C", 5);
 
 
-$v1->afficherInformations();
+$vehicule1->afficherInformations();
+$vehicule1->demarrer();
+$vehicule1->demarrer();
+$vehicule1->stopper();
+$vehicule1->accelerer(50);
+
 echo "<br><br>";
-$v2->afficherInformations();
+
+$vehicule2->afficherInformations();
+$vehicule2->demarrer();
+$vehicule2->accelerer(100);
+$vehicule2->ralentir(120);
+
+echo "<br><br>";
+
+$vehicule3->afficherInformations();
+$vehicule3->demarrer();
+$vehicule3->accelerer(50);
+$vehicule3->ralentir(40);
+$vehicule3->stopper();
+
+
+echo "<br><br>";
